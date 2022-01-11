@@ -1,0 +1,10 @@
+.gamestatus {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.gameactions {
+    display: flex;
+    justify-content: center;
+}

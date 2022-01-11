@@ -1,0 +1,9 @@
+.header-container {
+    width: 100%;
+    background-color: rgb(78, 75, 75);
+    color: white;
+}
+
+.title {
+    text-align: center;
+}
