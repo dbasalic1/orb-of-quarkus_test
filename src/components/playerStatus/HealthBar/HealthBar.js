@@ -1,38 +1,40 @@
-export default function HealthBar (props) {
-    
-    const containerStyles = {
-      height: 20,
-      width: '100%',
-      backgroundColor: "#e0e0de",
-      borderRadius: 50,
-      margin: 50
-    }
-  
-    const fillerStyles = {
-      height: '100%',
-      width: `${props.completed}%`,
-      backgroundColor: `${props.bgcolor}`,
-      borderRadius: 'inherit',
-      textAlign: 'right'
-    }
-  
-    const labelStyles = {
-      padding: 5,
-      color: 'white',
-      fontWeight: 'bold'
-    }
+import { useState, useEffect } from "react";
+import LinearProgress from "@mui/material/LinearProgress";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { green } from '@mui/material/colors';
+export default function HealthBar(props) {
+  const [progress, setProgress] = useState(props.currentHealth);
+  const normalise = (value) => (value * 100) / props.maxHealth;
 
-    const infoStyles = {
-      textAlign: 'center'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: green[500],
     }
-  
-    return (
-      <div style={containerStyles}>
-        <div style={fillerStyles}></div>
-        <div style={infoStyles}>{props.completed} / 100</div>
+  },
+});
+
+  useEffect(() => {
+    setProgress(props.currentHealth);
+  },[props])
+
+  return (
+    <div>
+      <ThemeProvider theme={theme}>
+      <LinearProgress 
+      color="primary"
+      sx={{
+        height: '20px',
+        backgroundColor: 'black',
+        borderRadius: 2
+
+      }} variant="determinate" value={normalise(progress)} />
+      </ThemeProvider>
+      <div>
+        {" "}
+        {props.currentHealth} / {props.maxHealth}
       </div>
-    )
-  }
-  
-
-  
+    </div>
+  );
+}

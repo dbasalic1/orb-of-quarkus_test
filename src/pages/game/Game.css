@@ -5,6 +5,11 @@
 }
 
 .gameactions {
+   margin-left: 10px;
+}
+
+.status-and-actions {
     display: flex;
     justify-content: center;
+    height: 300px;
 }
